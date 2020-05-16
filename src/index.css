@@ -5,9 +5,70 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display:flex;
 }
-
+a{
+  text-decoration: none;
+  color:inherit;
+}
+a h1{
+  font-size: 3rem;
+  margin: 2rem auto 2rem auto;
+  text-align: center;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+div#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.main-container{
+  margin:0 auto;
+  width: 40%;
+}
+.myMenu a{
+  text-decoration: none;
+  font-weight: bold;
+  padding:.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.myMenu{
+  color:rgb(70, 170, 236);
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  /* background: rgb(70, 170, 236); */
+};
+.item-container {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid blanchedalmond;
+  border-radius: 5%;
+  width: 33.333%;
+}
+.random-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: ;
+  background: floralwhite;
+  width: 32%;
+  margin: 0 auto 2rem auto;
+  box-shadow: 5px 5px #f2f2f4;
+}
+.random-list button {
+  width: 100%;
+  font-size: 1.3rem;
+}
+.item-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  align-items: flex-start;
 }

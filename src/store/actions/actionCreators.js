@@ -4,6 +4,20 @@ export const addItem = (edition)=>{
     edition
   }
 }
+export const increaseItem = (uniqueId,amount)=>{
+  return{
+    type: 'INCRE_ITEM',
+    uniqueId,
+    amount
+  }
+}
+export const decreaseItem = (uniqueId,amount)=>{
+  return{
+    type: 'DECRE_ITEM',
+    uniqueId,
+    amount
+  }
+}
 export const editItem = (uniqueId,edition)=>{
   return{
     type: 'EDIT_ITEM',
@@ -11,9 +25,23 @@ export const editItem = (uniqueId,edition)=>{
     edition
   }
 }
-export const editGroup = ()=>{
+export const addGroup = (name)=>{
+  return{
+    type: 'ADD_GROUP',
+    name
+  }
+}
+export const editGroup = (index,name)=>{
   return{
     type: 'EDIT_GROUP',
+    index,
+    name
+  }
+}
+export const delGroup = (name)=>{
+  return{
+    type: 'DEL_GROUP',
+    name
   }
 }
 export const delItem = (uniqueId)=>{

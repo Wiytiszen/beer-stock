@@ -1,5 +1,6 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Header from "./Header";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from "../store/actions/actionCreators";
@@ -7,6 +8,8 @@ import * as actionCreators from "../store/actions/actionCreators";
 const List = (props) => {
   let listOptions;
   let isItem;
+  let isGroupItem = false;
+  let groupName;
 
   if (props.match.path === "/list/items") {
     listOptions = props.items;
@@ -14,7 +17,13 @@ const List = (props) => {
   }
   if (props.match.params.group) {
     isItem = true;
+    isGroupItem = true;
 
+    groupName = props.match.params.group;
+    const groupExist = props.groups.find(i => i === groupName);
+    if(!groupExist){
+      props.history.push('/list/groups')
+    }
     listOptions = props.items.filter(
       (aItem) => aItem.group === props.match.params.group
     );
@@ -25,29 +34,68 @@ const List = (props) => {
     isItem = false;
   }
   return (
-    <div className="random-list">
-      <button onClick={props.history.goBack}> Atras </button>
-      {isItem || <Link to="/createGroup"><button>Add Group</button></Link>}
-      {listOptions.map((item, index) => {
-        if (isItem) {
-          return (
-           
-            <div key={index}>
-              <Link to={`/list/items/${item.uniqueId}`}>
-                <h4>{item.name}</h4>
-              </Link>
-            </div>  
-          );
-        }
-        return (
-          <div key={index}>
-            <Link to={`/list/groups/${item}`}>
-              <h4>{item}</h4>
+    <>
+      <Header />
+
+      <div className="random-list">
+        <div className="list-btn-group">
+          <div className="item-btn" onClick={props.history.goBack}>
+            <i class="fas fa-reply"></i>
+          </div>
+          {!isItem || (
+            <div className="item-btn">
+              <Link to="/itemForm">New Item</Link>
+            </div>
+          )}
+          {isItem || (
+            <div className="item-btn">
+              <Link to="/createGroup">New Category</Link>
+            </div>
+          )}
+        </div>
+        
+        <div className="list">
+        {isGroupItem && (
+          <div  className="category-name">
+            <Link to={`/editGroup/${groupName}`}>
+              <p>{groupName}</p>
+              <i class="far fa-edit"></i>
             </Link>
           </div>
-        );
-      })}
-    </div>
+        )}
+          {listOptions
+            .sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (a.name < b.name) {
+                return -1;
+              }
+              // a must be equal to b
+              return 0;
+            })
+            .map((item, index) => {
+              if (isItem) {
+                return (
+                  <div className="listed-item" key={index}>
+                    <Link to={`/list/items/${item.uniqueId}`}>
+                      <h4>{item.name}</h4>
+                      <span>{item.lastModification}</span>
+                    </Link>
+                  </div>
+                );
+              }
+              return (
+                <div className="listed-item" key={index}>
+                  <Link to={`/list/groups/${item}`}>
+                    <h4>{item}</h4>
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    </>
   );
 };
 

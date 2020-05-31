@@ -1,38 +1,24 @@
-import React, { useState} from "react";
-import Header from "./Header";
+import React, {useState} from 'react';
+import Header from './Header';
 import { bindActionCreators } from "redux";
-
 import { connect } from "react-redux";
-import { useHistory  } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as actionCreators from "../store/actions/actionCreators";
 
-const ItemForm = (props) => {
+const RapidForm = (props) => {
     let aHistory = useHistory();
     const isNew = props.match.params.itemId ? true : false;
-    let item =
-    props.items.find(
+    const isIn = props.match.path.includes('/rapidForm/in');
+    let item = props.items.find(
       (aItem) => String(aItem.uniqueId) === props.match.params.itemId
-    )||{
-      name:'',
-      amount:'',
-      measureUnit:'',
-      provider:'',
-      group:''
-    };
+    ) ||{}
    
-  
-
-
+  const [name, setName] = useState("");
+  const [measureUnit, setUnit] = useState("");
   const [search, setSearch] = useState("");
   const [searchItems, setItem] = useState([]);
-  
-  
-  const [{
-    name,
-amount,
-measureUnit,
-provider,
-group},setValues] = useState(item)
+  const [amount,setAmount] = useState('')
+  const [id,setId] = useState()
 
 
     // Search function
@@ -52,49 +38,37 @@ group},setValues] = useState(item)
   }; // **search function
 
   const onChange = e => {
-    const { name, value } = e.target;
-    setValues(prevState => ({ ...prevState, [name]: value }));
+    setAmount(e.target.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    const edition = {
-          name,
-          amount,
-          measureUnit,
-          provider,
-          group,
-        };
-    if (!isNew) {
-      props.addItem(edition);
+    if (isIn) {
+      props.increaseItem(item.uniqueId,amount);
       clearValues();
       return;
     }
-    props.editItem(item.uniqueId, edition);
+    props.decreaseItem(id,amount);
     clearValues();
+    return;
   };
   const clearValues = () =>{
-    setValues({...item});
+    setAmount('');
   };
 
   const navigate = (i) =>{
     setSearch('')
     setItem([])
-    aHistory.push(`/rapidForm/in/${i.uniqueId}`);
-    // const selected = {
-    //   name:i.name,
-    //   amount:i.amount,
-    //   measureUnit:i.measureUnit,
-    //   provider:i.provider,
-    //   group:i.group,    
-    // }
-    // setValues({...selected})
+    aHistory.push(`/rapidForm/out/${i.uniqueId}`);
+    setName(i.name)
+    setUnit(i.measureUnit)
+    setId(i.uniqueId)
   }
     
   return (
     <>
       <Header />
       <div className="item-form">
-        {!isNew &&
+        {!isIn &&(
           <div className="search">
             <label>
               <span><i class="fas fa-search"></i></span>
@@ -114,17 +88,11 @@ group},setValues] = useState(item)
                 </div>
               ))}
             </div>
-          </div>}
+          </div>)}
         <form>
-          <label>
-            <span>name:</span>
-            <input
-              type="text"
-              value={name}
-              name="name"
-              onChange={onChange}
-            />
-          </label>
+
+            <p>{false||name||item.name}</p>
+
           <label>
             <span>amount:</span>
             <input
@@ -133,35 +101,8 @@ group},setValues] = useState(item)
               name="amount"
               onChange={onChange}
             />
-          </label>
-          <label>
-            <span>measureUnit:</span>
-            <input
-              type="text"
-              value={measureUnit}
-              name="measureUnit"
-              onChange={onChange}
-            />
-          </label>
-          <label>
-            <span>provider:</span>
-            <input
-              type="text"
-              value={provider}
-              name="provider"
-              onChange={onChange}
-            />
-          </label>
-          <label>
-            <span>group:</span>
-            <input
-              type="text"
-              value={group}
-              name="group"
-              onChange={onChange}
-            />
-          </label>
-          
+            <span>{false||measureUnit||item.measureUnit}</span>
+          </label>  
           <div className ="form-btn-group">
             <button type="submit" className="form-btn" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
@@ -175,7 +116,9 @@ group},setValues] = useState(item)
       </div>
     </>
   );
-};
+}
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -188,4 +131,4 @@ const mapDispatchToProps = (dispatch) => {
   return { ...bindActionCreators(actionCreators, dispatch) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RapidForm);

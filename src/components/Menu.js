@@ -1,28 +1,58 @@
-import React from "react"
-import {Link} from "react-router-dom"
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import React from "react";
+import Header from "./Header";
 
-const Menu = (props) =>{
+import { Link } from "react-router-dom";
+// import Button from '@material-ui/core/Button';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 
-  return(
-    <div className = "main-menu">
-        <div className="myMenu">
-          <ButtonGroup
-          className ="MuiButton-startIcon"
-          orientation="vertical"
-          fullWidth="true"
-          color="primary"
-          aria-label="vertical outlined primary button group"
-          >
-          <Button><Link exact to="/list/items">All Items</Link></Button>
-          <Button><Link to="/list/groups">Categories</Link></Button>
-          <Button><Link to="/itemForm">Load Item</Link></Button>
-          <Button><Link to="/list/item">Item random</Link></Button>
-          </ButtonGroup> 
+const Menu = (props) => {
+  return (
+    <>
+    <Header/>
+    <div className="main-menu">
+      <div className="menu-btn-list">
+        <div className="main-btns">
+          <div className="square-btn-lg menu-button">
+            <Link exact to="/list/items">
+              <div className="btn-text">
+                <i className="fas fa-boxes"></i>
+                <p>All Goods</p>
+                <span>{`130 Units`}</span>
+              </div>
+              
+            </Link>
+          </div>
+          <div className="group-btn-small">
+            <div className="square-btn-small menu-button">
+              <Link to="/itemForm">
+                <div className="btn-text">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </Link>
+            </div>
+            <div className="square-btn-small menu-button">
+              <Link to="/rapidForm/out">
+                <div className="btn-text">
+                  <i class="fas fa-minus"></i>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
+
+        <div className="full-width-btn menu-button">
+          <Link to="/list/groups">Categories</Link>
+        </div>
+        <div className="full-width-btn menu-button">
+          <Link to="/stockOut">Stock Out </Link>
+        </div>
+        <div className="full-width-btn menu-button">
+          <Link to="/stockOut">Contacts </Link>
+        </div>
+      </div>
     </div>
-  )
-}
+    </>
+  );
+};
 
 export default Menu;

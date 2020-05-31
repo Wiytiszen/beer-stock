@@ -1,51 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actionCreators from "../store/actions/actionCreators";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 const Item = (props) => {
-  const handleDel= ()=>{
-    if (window.confirm('Are you sure you wish to delete this item?')){
+  const handleDel = () => {
+    if (window.confirm("Are you sure you wish to delete this item?")) {
       props.delItem(found.uniqueId);
       props.history.goBack();
       return;
-    } 
+    }
     return;
-  }
+  };
+  const [amount, setAmount] = useState();
 
-  const classes = useStyles();
-
-  const found = props.items.find(aItem =>String(aItem.uniqueId) === props.match.params.item)||props.items.filter(aItem => aItem.group === props.match.params.group);
-  // const belongGroup = props.items.filter(aItem => aItem.group === props.match.params.group)  
+  const found =
+    props.items.find(
+      (aItem) => String(aItem.uniqueId) === props.match.params.item
+    ) ||
+    props.items.filter((aItem) => aItem.group === props.match.params.group);
+  // const belongGroup = props.items.filter(aItem => aItem.group === props.match.params.group)
   return (
     <div className="item-container">
-      <p>{found.amount}<b>{found.measureUnit}</b></p>
-      <p>{`Name: ${found.name}`}</p>
-      <p>{`Last Modification: ${found.lastModification}`}</p>
+      <div className="item-amount">
+        <p>
+          {found.amount}
+          <span>{found.measureUnit}</span>
+        </p>
+        <p>{`${found.name}`}</p>
+      </div>
+      <div className="quick-modify">
+        <input
+          type="number"
+          value={amount}
+          placeholder="Quick change"
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <div
+          onClick={() => {
+            props.increaseItem(found.uniqueId, amount);
+          }}
+        >
+          <i class="fas fa-plus-circle"></i>
+        </div>
+        <div
+          onClick={() => {
+            props.decreaseItem(found.uniqueId, amount);
+          }}
+        >
+          <i class="fas fa-minus-circle"></i>
+        </div>
+      </div>
+      
+      <p>{`Last Modification: ${found.lastModification}`} </p>
       <p>{`by: ${found.by}`}</p>
+      <p>{`Last Amount: ${found.lastAmount}`}</p>
+        
+        
 
-      <div className={classes.root}>
-        <Button 
-          onClick={props.history.goBack}
-          variant="contained" 
-          color="primary">Go Back</Button>
-        <Button 
-          variant="contained" 
-          color="primary"><Link to={`/itemForm/${found.uniqueId}`}>Edit</Link></Button>
-        <Button  onClick={handleDel} variant="contained" color="secondary"
-        // <Button  onClick={()=> props.delItem(found.uniqueId)} variant="contained" color="secondary"
-        >Delete</Button>
+      <div className={"item-btn-group"}>
+        <div  className="item-btn" onClick={props.history.goBack} >
+          <i class="fas fa-reply"></i>
+        </div>
+        <div  className="item-btn" >
+          <Link to={`/itemForm/${found.uniqueId}`}><i class="far fa-edit"></i></Link>
+        </div>
+        <div className="item-btn delete" 
+          onClick={handleDel}
+        >
+          <i class="far fa-trash-alt"></i>
+        </div>
       </div>
     </div>
   );
@@ -63,4 +88,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
-

@@ -18,10 +18,34 @@ const rootReducer = (state,action)=>{
         lastAmount: 0,
       }; 
       return {...state, items:[...state.items,newItem] };
-      
+
     case 'DEL_ITEM':
-      console.log(action.payload);
       return {...state, items:state.items.filter(item => item.uniqueId !== action.payload) };
+
+      // INCREASE ITEM
+    case 'INCRE_ITEM':
+      const items = [...state.items].map((item) => {
+      if(item.uniqueId === action.uniqueId){
+        item.amount = Number(item.amount) + Number(action.amount);
+        item.lastModification = thisDate();
+      }
+      return item;
+    });
+
+      return {...state, items };
+
+      //DECREASE ITEM
+      case 'DECRE_ITEM':{
+        const items = [...state.items].map((item) => {
+          if(item.uniqueId === action.uniqueId){
+            item.amount = Number(item.amount) - Number(action.amount);
+            item.lastModification = thisDate();
+          }
+          return item;
+        });
+    
+          return {...state, items };
+      }    
     case 'EDIT_ITEM':
 
       const editedItems = [...state.items].map(item =>{
@@ -38,7 +62,36 @@ const rootReducer = (state,action)=>{
         return item;
       });
       return {...state, items:editedItems};
-    default:
+ 
+      case 'ADD_GROUP':{
+        return {...state,groups:[...state.groups,action.name]};
+    }
+      case 'EDIT_GROUP':{
+        const {index,name} = action;
+        const groups = [...state.groups];
+        const editedItems = [...state.items].map(item =>{
+          if(item.group === groups[index]){
+            item.group = name;
+          }
+          return item;
+        });
+        
+            groups[index] = name;
+
+
+        return {...state,groups,items:editedItems};
+    }
+
+      case 'DEL_GROUP':{
+          const groups=[...state.groups.filter(g => g !== action.name)]
+          const items=[...state.items.filter(i  => i.group !== action.name)]
+          return {...state,items,groups};
+      }
+
+
+
+
+      default:
       return state;
   }
 }

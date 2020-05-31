@@ -50,3 +50,10 @@ export const delItem = (uniqueId)=>{
     payload:uniqueId
   }
 }
+//  batch
+export const confBatch = (name)=>{
+  return{
+    type: 'CONF_BATCH',
+    name,
+  }
+}

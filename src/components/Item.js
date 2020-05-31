@@ -52,21 +52,21 @@ const Item = (props) => {
           <i class="fas fa-minus-circle"></i>
         </div>
       </div>
-      
+
       <p>{`Last Modification: ${found.lastModification}`} </p>
       <p>{`by: ${found.by}`}</p>
       <p>{`Last Amount: ${found.lastAmount}`}</p>
-        
-        
+
+
 
       <div className={"item-btn-group"}>
-        <div  className="item-btn" onClick={props.history.goBack} >
+        <div className="item-btn button" onClick={props.history.goBack} >
           <i class="fas fa-reply"></i>
         </div>
-        <div  className="item-btn" >
+        <div className="item-btn button" >
           <Link to={`/itemForm/${found.uniqueId}`}><i class="far fa-edit"></i></Link>
         </div>
-        <div className="item-btn delete" 
+        <div className="item-btn delete"
           onClick={handleDel}
         >
           <i class="far fa-trash-alt"></i>

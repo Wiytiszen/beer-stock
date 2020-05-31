@@ -39,16 +39,16 @@ const List = (props) => {
 
       <div className="random-list">
         <div className="list-btn-group">
-          <div className="item-btn" onClick={props.history.goBack}>
+          <div className="item-btn button" onClick={props.history.goBack}>
             <i class="fas fa-reply"></i>
           </div>
           {!isItem || (
-            <div className="item-btn">
+            <div className="item-btn button">
               <Link to="/itemForm">New Item</Link>
             </div>
           )}
           {isItem || (
-            <div className="item-btn">
+            <div className="item-btn button">
               <Link to="/createGroup">New Category</Link>
             </div>
           )}

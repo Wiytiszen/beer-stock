@@ -8,7 +8,6 @@ import * as actionCreators from "../store/actions/actionCreators";
 const GroupForm = (props) => {
     
     const isNew = props.match.path.includes('/createGroup');
-    const isIn = true;
  
   const [name, setName] = useState(props.match.params.group||"");
   const oldName = props.match.params.group;

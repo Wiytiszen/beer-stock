@@ -7,7 +7,6 @@ import * as actionCreators from "../store/actions/actionCreators";
 
 const RapidForm = (props) => {
     let aHistory = useHistory();
-    const isNew = props.match.params.itemId ? true : false;
     const isIn = props.match.path.includes('/rapidForm/in');
     let item = props.items.find(
       (aItem) => String(aItem.uniqueId) === props.match.params.itemId
@@ -104,10 +103,10 @@ const RapidForm = (props) => {
             <span>{false||measureUnit||item.measureUnit}</span>
           </label>  
           <div className ="form-btn-group">
-            <button type="submit" className="form-btn" onClick ={e=> handleSubmit(e)}>
+            <button type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
             </button>
-            <div className="form-btn reply" onClick={props.history.goBack} >
+            <div className="form-btn reply button" onClick={props.history.goBack} >
               <i class="fas fa-reply"></i>
             </div>
           </div>

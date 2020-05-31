@@ -8,6 +8,10 @@ import GroupForm from './components/GroupForm';
 import RapidForm from './components/RapidForm';
 import ItemForm from './components/ItemForm';
 import Item from './components/Item';
+import Batch from './components/Batch';
+import BatchForm from './components/BatchForm';
+import BatchEdit from './components/BatchEdit';
+import BatchList from './components/BatchList';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {
@@ -33,9 +37,10 @@ ReactDOM.render(
         <Route  path="/rapidForm/out" component={RapidForm}/>
         <Route  path="/rapidForm/in/:itemId" component={RapidForm}/>
         {/* STOCK OUT */}
-        <Route  path="/rapidForm/in/:itemId" component={RapidForm}/>
-        <Route  path="/rapidForm/in/:itemId" component={RapidForm}/>
-        <Route  path="/rapidForm/in/:itemId" component={RapidForm}/>
+        <Route  path="/list/batchList" component={BatchList}/>
+        <Route  path="/batch/new" component={BatchForm}/>
+        <Route  path="/batch/edit/:batchId" component={BatchEdit}/>
+        <Route  path="/batch/show/:batchId" component={Batch}/>
       </Switch>
     </HashRouter>
   </Provider>,

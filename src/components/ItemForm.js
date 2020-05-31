@@ -163,10 +163,10 @@ group},setValues] = useState(item)
           </label>
           
           <div className ="form-btn-group">
-            <button type="submit" className="form-btn" onClick ={e=> handleSubmit(e)}>
+            <button type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
             </button>
-            <div className="form-btn reply" onClick={props.history.goBack} >
+            <div className="form-btn reply button" onClick={props.history.goBack} >
               <i class="fas fa-reply"></i>
             </div>
           </div>

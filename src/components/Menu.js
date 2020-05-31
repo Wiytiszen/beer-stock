@@ -12,7 +12,7 @@ const Menu = (props) => {
     <div className="main-menu">
       <div className="menu-btn-list">
         <div className="main-btns">
-          <div className="square-btn-lg menu-button">
+          <div className="square-btn-lg menu-button button">
             <Link exact to="/list/items">
               <div className="btn-text">
                 <i className="fas fa-boxes"></i>
@@ -23,14 +23,14 @@ const Menu = (props) => {
             </Link>
           </div>
           <div className="group-btn-small">
-            <div className="square-btn-small menu-button">
+            <div className="square-btn-small menu-button button">
               <Link to="/itemForm">
                 <div className="btn-text">
                   <i class="fas fa-plus"></i>
                 </div>
               </Link>
             </div>
-            <div className="square-btn-small menu-button">
+            <div className="square-btn-small menu-button button">
               <Link to="/rapidForm/out">
                 <div className="btn-text">
                   <i class="fas fa-minus"></i>
@@ -40,13 +40,13 @@ const Menu = (props) => {
           </div>
         </div>
 
-        <div className="full-width-btn menu-button">
+        <div className="full-width-btn menu-button button">
           <Link to="/list/groups">Categories</Link>
         </div>
-        <div className="full-width-btn menu-button">
-          <Link to="/stockOut">Stock Out </Link>
+        <div className="full-width-btn menu-button button">
+          <Link to="/list/batchList">Stock Out </Link>
         </div>
-        <div className="full-width-btn menu-button">
+        <div className="full-width-btn menu-button button">
           <Link to="/stockOut">Contacts </Link>
         </div>
       </div>

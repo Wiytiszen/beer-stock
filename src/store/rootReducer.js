@@ -87,6 +87,19 @@ const rootReducer = (state,action)=>{
           const items=[...state.items.filter(i  => i.group !== action.name)]
           return {...state,items,groups};
       }
+      case 'CONF_BATCH':{
+        const batch = state.batches.find(batch => batch.name === action.name)
+        const items=[...state.items]
+        items.forEach(item =>{
+          batch.items.forEach(bItem =>{
+            if(item.uniqueId === bItem.uniqueId){
+              item.amount -=bItem.amount;
+            }
+          })
+
+        })
+        return {...state,items};
+    }
 
 
 

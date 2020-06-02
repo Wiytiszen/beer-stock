@@ -57,3 +57,16 @@ export const confBatch = (name)=>{
     name,
   }
 }
+export const editBatch = (name,items)=>{
+  return{
+    type: 'EDIT_BATCH',
+    name,
+    items
+  }
+}
+export const delBatch = (name)=>{
+  return{
+    type: 'DEL_BATCH',
+    name
+  }
+}

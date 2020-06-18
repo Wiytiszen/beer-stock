@@ -100,6 +100,9 @@ const rootReducer = (state,action)=>{
         })
         return {...state,items};
     }
+    case 'NEW_BATCH':{
+      return {...state, batches:[...state.batches,action.newBatch]};
+    }
     case 'EDIT_BATCH':{
       const batches = state.batches.map(batch =>{
         if( batch.name === action.name){

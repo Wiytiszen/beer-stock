@@ -57,6 +57,12 @@ export const confBatch = (name)=>{
     name,
   }
 }
+export const newBatch = (newBatch)=>{
+  return{
+    type: 'NEW_BATCH',
+    newBatch
+  }
+}
 export const editBatch = (name,items)=>{
   return{
     type: 'EDIT_BATCH',

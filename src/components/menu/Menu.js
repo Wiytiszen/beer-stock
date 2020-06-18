@@ -1,9 +1,8 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../header/Header";
+import "./menu.css";
 
 import { Link } from "react-router-dom";
-// import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const Menu = (props) => {
   return (
@@ -26,14 +25,14 @@ const Menu = (props) => {
             <div className="square-btn-small menu-button button">
               <Link to="/itemForm">
                 <div className="btn-text">
-                  <i class="fas fa-plus"></i>
+                  <i className="fas fa-plus"></i>
                 </div>
               </Link>
             </div>
             <div className="square-btn-small menu-button button">
               <Link to="/rapidForm/out">
                 <div className="btn-text">
-                  <i class="fas fa-minus"></i>
+                  <i className="fas fa-minus"></i>
                 </div>
               </Link>
             </div>
@@ -47,7 +46,7 @@ const Menu = (props) => {
           <Link to="/list/batchList">Stock Out </Link>
         </div>
         <div className="full-width-btn menu-button button">
-          <Link to="/stockOut">Contacts </Link>
+          <Link to="/">Contacts </Link>
         </div>
       </div>
     </div>

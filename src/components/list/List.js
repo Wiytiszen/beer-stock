@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+import Header from "../header/Header";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as actionCreators from "../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/actionCreators";
+import "./list.css";
 
 const List = (props) => {
   let listOptions;
@@ -56,7 +57,7 @@ const List = (props) => {
         
         <div className="list">
         {isGroupItem && (
-          <div  className="category-name">
+          <div  className="category-name button">
             <Link to={`/editGroup/${groupName}`}>
               <p>{groupName}</p>
               <i class="far fa-edit"></i>
@@ -80,7 +81,7 @@ const List = (props) => {
                   <div className="listed-item" key={index}>
                     <Link to={`/list/items/${item.uniqueId}`}>
                       <h4>{item.name}</h4>
-                      <span>{item.lastModification}</span>
+                      <span><i class="fas fa-caret-right"></i></span>
                     </Link>
                   </div>
                 );
@@ -89,6 +90,7 @@ const List = (props) => {
                 <div className="listed-item" key={index}>
                   <Link to={`/list/groups/${item}`}>
                     <h4>{item}</h4>
+                    <span><i class="fas fa-caret-right"></i></span>
                   </Link>
                 </div>
               );

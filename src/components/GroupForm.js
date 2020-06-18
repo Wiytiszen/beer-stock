@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Header from './Header';
+import Header from './header/Header';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 // import { useHistory } from "react-router-dom";
@@ -46,7 +46,7 @@ const GroupForm = (props) => {
         <form>
 
           <label>
-            <span>New Category:</span>
+            <span>{isNew? "New Category": "Edit Category"}</span>
             <input
               type="text"
               value={name}
@@ -54,18 +54,19 @@ const GroupForm = (props) => {
             />
           </label>  
           <div className ="form-btn-group">
-            <button type="submit" className="form-btn" onClick ={e=> handleSubmit(e)}>
+            <div type="submit" className="form-btn" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
-            </button>
+            </div>
+            
+            
+            <div className="form-btn reply" onClick={props.history.goBack} >
+              <i class="fas fa-reply"></i>
+            </div>
             { !isNew &&
               <div className="form-btn delete" onClick={handleDel} >
                 <i class="far fa-trash-alt"></i>
               </div>
             }
-            
-            <div className="form-btn reply" onClick={props.history.goBack} >
-              <i class="fas fa-reply"></i>
-            </div>
           </div>
         </form>
         

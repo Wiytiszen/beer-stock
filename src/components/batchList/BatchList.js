@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+import Header from "../header/Header";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as actionCreators from "../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/actionCreators";
 
 const BatchList = (props) => {
   return(
@@ -38,6 +38,7 @@ const BatchList = (props) => {
                   <div className="listed-item" key={index}>
                     <Link to={`/batch/show/${batch.name}`}>
                       <h4>{batch.name}</h4>
+                      <span><i class="fas fa-caret-right"></i></span>
                     </Link>
                   </div>
                 );

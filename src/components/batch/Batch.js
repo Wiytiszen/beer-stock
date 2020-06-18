@@ -1,9 +1,10 @@
 import React from 'react'
+import "./batch.css";
 import { Link } from 'react-router-dom'
-import Header from "./Header";
+import Header from "../header/Header";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as actionCreators from "../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/actionCreators";
 
 function Batch(props) {
   const found =
@@ -12,7 +13,6 @@ function Batch(props) {
     )
   const useBatch = () => {
     props.confBatch(found.name)
-    alert("Funciona")
   }
   return (
     <div className="batch-container">
@@ -37,8 +37,8 @@ function Batch(props) {
             })}
           </tbody>
         </table>
-      </div>
-      <div className={"item-btn-group"}>
+      
+      <div className="item-btn-group">
         <div className="item-btn button" onClick={props.history.goBack}>
           <i class="fas fa-reply"></i>
         </div>
@@ -50,6 +50,7 @@ function Batch(props) {
         <div className="item-btn confirm" onClick={useBatch}>
           <i class="fas fa-check"></i>
         </div>
+      </div>
       </div>
     </div>
   );

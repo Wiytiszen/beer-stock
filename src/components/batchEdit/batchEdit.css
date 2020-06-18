@@ -1,0 +1,73 @@
+
+.batch-form-container{
+  color:#022D3E;
+}
+.batch-form-container form{
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.batch-items-form {
+  display: flex;
+  border:2px solid #022D3E;
+  padding: .5rem;
+  margin-bottom: 1rem;
+}
+.batch-item{
+  flex: 2 2 80%;
+}
+.batch-item {
+  display: flex;
+  flex-direction: column;
+}
+.del-item{
+  display:flex;
+  flex: 1 1 20%;
+  align-items: center;
+  justify-content: center;
+}
+.del-item:hover{
+  font-weight: bolder;
+}
+.del-item:active{
+  font-weight: bolder;
+  color: red;
+}
+.batch-item{
+  flex: 1 1 80%;
+}
+.batch-form form label{
+  display: block;
+}
+.batch-form form label span{
+  display: inline-block;
+  text-align: left;
+  margin-right:10px;
+  width: 40%;
+}
+.add-item-batch{
+  border:1px solid #022D3E;
+  background: white;
+  color: #022D3E;
+  width: 40%;
+  padding: .5rem;
+}
+.add-item-batch:hover{
+  font-weight: bold;
+}
+.add-item-batch:active{
+  border:2px solid #022D3E;
+  background: #022D3E;
+  color: white;
+}
+@media only screen and (min-width: 600px) {
+  .batch-form form label span{
+    display: inline-block;
+    text-align: right;
+    margin-right:10px;
+    width: 50%;
+  }
+  .batch-item{
+    flex: 2 2 80%;
+  }
+}

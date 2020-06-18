@@ -1,4 +1,0 @@
-#022D3E font
-#03FE89 details
-#e2e1e0 background
-#E6E8E9 background

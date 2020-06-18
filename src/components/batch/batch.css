@@ -1,0 +1,40 @@
+/* batch */ 
+.batch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #022d3e;
+}
+.batch-container caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+table {
+  display: ;
+  border-collapse: collapse;
+  
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr {
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+.confirm {
+  background: #03fe89;
+}
+.batch-items{
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+}

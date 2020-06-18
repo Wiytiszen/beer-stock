@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import * as actionCreators from "../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/actionCreators";
+import "./item.css";
 
 const Item = (props) => {
   const handleDel = () => {

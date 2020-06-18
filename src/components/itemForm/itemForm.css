@@ -1,0 +1,38 @@
+
+.item-form{
+  color: #022D3E;
+  font-size:1.2rem;
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+}
+
+.item-form form label span{
+  display: inline-block;
+  text-align: right;
+
+}
+.item-form form label input{
+  border:none;
+  border-bottom: 1px solid #022D3E;
+}
+.item-form form label input:focus{
+  outline: none;
+  border:none;
+  border-bottom: 1px solid #03FE89;
+}
+.item-form form label{
+  display: flex;
+}
+.item-form form label span{
+  display: inline-block;
+  text-align: right;
+  margin-right:10px;
+  width: 40%;
+}
+@media only screen and (min-width: 600px) {
+  .form-btn-group{
+    width: 50%;
+    margin: 0 auto;
+  }
+}

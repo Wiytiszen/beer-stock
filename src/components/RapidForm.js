@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Header from './Header';
+import Header from './header/Header';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -103,9 +103,9 @@ const RapidForm = (props) => {
             <span>{false||measureUnit||item.measureUnit}</span>
           </label>  
           <div className ="form-btn-group">
-            <button type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
+            <div type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
-            </button>
+            </div>
             <div className="form-btn reply button" onClick={props.history.goBack} >
               <i class="fas fa-reply"></i>
             </div>

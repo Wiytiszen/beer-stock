@@ -1,10 +1,13 @@
 import React, { useState} from "react";
-import Header from "./Header";
+import Header from "../header/Header";
+import "./itemForm.css"
 import { bindActionCreators } from "redux";
+import { isNumber } from "../../helpFunctions/helpFunctions";
 
 import { connect } from "react-redux";
 import { useHistory  } from "react-router-dom";
-import * as actionCreators from "../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/actionCreators";
+
 
 const ItemForm = (props) => {
     let aHistory = useHistory();
@@ -21,12 +24,8 @@ const ItemForm = (props) => {
     };
    
   
-
-
   const [search, setSearch] = useState("");
-  const [searchItems, setItem] = useState([]);
-  
-  
+  const [searchItems, setItem] = useState([]);  
   const [{
     name,
 amount,
@@ -64,6 +63,7 @@ group},setValues] = useState(item)
           provider,
           group,
         };
+        isNumber(amount)
     if (!isNew) {
       props.addItem(edition);
       clearValues();
@@ -163,9 +163,9 @@ group},setValues] = useState(item)
           </label>
           
           <div className ="form-btn-group">
-            <button type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
+            <div type="submit" className="form-btn button" onClick ={e=> handleSubmit(e)}>
                 <i class="far fa-save"></i>
-            </button>
+            </div>
             <div className="form-btn reply button" onClick={props.history.goBack} >
               <i class="fas fa-reply"></i>
             </div>
